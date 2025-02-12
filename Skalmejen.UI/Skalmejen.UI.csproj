@@ -10,4 +10,8 @@
     <Folder Include="design\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Skalmejen.Common\Skalmejen.Common.csproj" />
+  </ItemGroup>
+
 </Project>
