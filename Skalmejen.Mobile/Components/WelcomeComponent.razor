@@ -1,0 +1,16 @@
+﻿<div class="skalmejen-welcome-container">
+    <div class="skalmejen-welcome-header">Play Skalmejen!</div>
+    <div class="skalmejen-welcome-components">
+        <div class="skalmejen-welcome-component">
+            <div class="skalmejen-welcome-input-container">
+                <label class="skalmejen-welcome-input-label" for="skalmejen-welcome-join-code">Join code</label>
+                <input class="skalmejen-welcome-input" type="text" maxlength="10" id="skalmejen-welcome-join-code" @bind="JoinText" />
+             </div>
+            <div class="skalmejen-welcome-input-container">
+                <label class="skalmejen-welcome-input-label" for="skalmejen-welcome-user-name">User name</label>
+                <input class="skalmejen-welcome-input" type="text" maxlength="10" id="skalmejen-welcome-user-name" @bind="UserName" />
+            </div>
+            <button class="skalmejen-welcome-button" type="button" disabled="@(DisableJoinButton ? "disabled" : null)" />
+        </div>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+services:
+  skalmejen.mobile:
+    image: skalmejen.mobile
+    build:
+      context: .
+      dockerfile: ./Skalmejen.Mobile/Dockerfile
+    ports:
+      - 8080:80
