@@ -6,9 +6,9 @@ var builder = WebApplication
     .AddConfiguration()
     .AddServices();
 
-// Add services to the container.
+builder.AddConfiguration();
+builder.AddServices();
 
 var app = builder.Build();
-app.UseServicePipeline();
-
+app.ConfigureRequestPipeline();
 app.Run();

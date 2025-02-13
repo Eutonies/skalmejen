@@ -8,6 +8,11 @@
 
   <ItemGroup>
     <PackageReference Include="Malarkey.Client" Version="1.1.4" />
+    <Folder Include="design\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Skalmejen.Common\Skalmejen.Common.csproj" />
   </ItemGroup>
 
 </Project>
