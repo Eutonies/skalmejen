@@ -1,0 +1,120 @@
+﻿<div class="skalmejen-setup-round-component">
+    @if(_editData != null) {
+        <div class="skalmejen-setup-round-base-container">
+            <div class="skalmejen-setup-round-base-input-container">
+                <div class="skalmejen-setup-round-base-input-label">Name</div>
+                <input type="text" class="skalmejen-setup-round-base-name" @bind="_editData.RoundName" />
+            </div>
+            <div class="skalmejen-setup-round-base-input-container">
+                <div class="skalmejen-setup-round-base-input-label">Type: </div>
+                <div class="skalmejen-setup-round-base-type">@(EditType.ToString())</div>
+            </div>
+            <div class="skalmejen-setup-round-base-input-container">
+                <div class="skalmejen-setup-round-base-input-label">Points:</div>
+                <input type="number" step="1" min="1" max="30" class="skalmejen-setup-round-base-points" @bind="_editData.Points" />
+            </div>
+
+            <div class="skalmejen-setup-round-base-input-container">
+                <div class="skalmejen-setup-round-base-input-label">Seconds:</div>
+                <input type="number" step="1" min="10" max="120" class="skalmejen-setup-round-base-duration" @bind="_editData.DurationInSeconds" disabled="@(EditType == RoundEditType.Buzzer ? "disabled" : null)" />
+            </div>
+
+
+
+        </div>
+        <div class="skalmejen-setup-round-buttons-container">
+            <div class="skalmejen-setup-round-button-container">
+                <button type="button"
+                class="skalmejen-setup-round-button"
+                @onclick="OnSaveButtonClicked"
+                disabled="@(!CanSave ? "disabled" : null)">
+                    <i class="bi bi-floppy"></i>
+                </button>
+            </div>
+            <div class="skalmejen-setup-round-button-container">
+                <button type="button"
+                class="skalmejen-setup-round-button"
+                @onclick="OnUpButtonClicked"
+                disabled="@(!CanUp ? "disabled" : null)">
+                    <i class="bi bi-arrow-up-square"></i>
+                </button>
+            </div>
+            <div class="skalmejen-setup-round-button-container">
+                <button type="button"
+                class="skalmejen-setup-round-button"
+                @onclick="OnDownButtonClicked"
+                disabled="@(!CanDown ? "disabled" : null)">
+                    <i class="bi bi-arrow-down-square"></i>
+                </button>
+            </div>
+            <div class="skalmejen-setup-round-button-container">
+                <button type="button"
+                class="skalmejen-setup-round-button"
+                @onclick="OnDeleteButtonClicked">
+                    <i class="bi bi-x-square"></i>
+                </button>
+            </div>
+            <div class="skalmejen-setup-round-button-container">
+                <button type="button"
+                        class="skalmejen-setup-round-button"
+                        disabled="@(!CanPlay ? "disabled" : null)"
+                        @onclick="OnPlayButtonClicked">
+                    <i class="bi bi-play"></i>
+                </button>
+            </div>
+
+        </div>
+        <div class="skalmejen-setup-round-specific-container">
+            @if(EditType == RoundEditType.Buzzer)
+            {
+                <div class="skalmejen-setup-round-buzzer-container">
+                    <div class="skalmejen-setup-round-buzzer-info-container">
+                        <div class="skalmejen-setup-round-base-input-container">
+                            <div class="skalmejen-setup-round-base-input-label">Name:</div>
+                            <div class="">@(_editData.SoundName)</div>
+                        </div>
+                        <div class="skalmejen-setup-round-base-input-container">
+                            <div class="skalmejen-setup-round-base-input-label">Xtra Seconds:</div>
+                            <input type="number" step="1" min="0" max="30" class="skalmejen-setup-round-base-input" @bind="_editData.AdditionalSeconds" />
+                        </div>
+
+                    </div>
+
+                    <div class="skalmejen-setup-round-buzzer-dragdrop-container">
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="skalmejen-setup-round-question-container">
+                    <div class="skalmejen-setup-round-question-info-container">
+                        <div class="skalmejen-setup-round-base-input-container">
+                            <div class="skalmejen-setup-round-base-input-label">Question:</div>
+                            <textarea rows="3" class="skalmejen-setup-round-textarea" @bind="_editData.Question"></textarea>
+                        </div>
+                    </div>
+                    <div class="skalmejen-setup-round-question-options-container">
+                        @foreach (var opt in _editData.Options)
+                        {
+                            <div class="skalmejen-setup-round-question-option-container">
+                                <input type="text" class="skalmejen-setup-round-question-option" @bind="opt.Value"/>
+                                <div class="skalmejen-setup-round-question-option-checkbox">
+                                    <div>Correct?</div>
+                                    <input type="checkbox" @bind="opt.IsCorrect" />
+                                </div>
+                            </div>
+
+                        }
+
+
+                    </div>
+
+                </div>
+
+            }
+        </div>
+
+
+    }
+
+</div>

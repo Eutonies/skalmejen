@@ -1,0 +1,129 @@
+﻿.skalmejen-setup-round-component {
+    width: 100%;
+    height: 120px;
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: rgba(40,40,40,0.9);
+    border-radius: 10px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    font-size: 12pt;
+}
+
+
+.skalmejen-setup-round-base-container{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.skalmejen-setup-round-base-input-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+.skalmejen-setup-round-base-input-label {
+    margin-right: 20px;
+}
+
+.skalmejen-setup-round-base-name {
+    width: 250px;
+    border-radius: 5px;
+}
+
+.skalmejen-setup-round-base-type {}
+
+.skalmejen-setup-round-base-points {
+    margin-left: 20px;
+    border-radius: 5px;
+}
+.skalmejen-setup-round-base-duration {
+    margin-left: 10px;
+    border-radius: 5px;
+    width: 53px;
+}
+
+
+
+.skalmejen-setup-round-buttons-container {
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+}
+
+.skalmejen-setup-round-button-container {
+    padding: 10px;
+}
+
+
+.skalmejen-setup-round-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.skalmejen-setup-round-specific-container {
+    width: 55%;
+    height: 100%;
+}
+
+.skalmejen-setup-round-buzzer-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.skalmejen-setup-round-buzzer-info-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.skalmejen-setup-round-buzzer-dragdrop-container {
+    width: 50%;
+
+}
+.skalmejen-setup-round-question-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.skalmejen-setup-round-textarea {
+    border-radius: 4px;
+    width: 300px;
+    margin-top: 10px;
+
+}
+
+.skalmejen-setup-round-question-info-container {
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+}
+
+.skalmejen-setup-round-question-options-container {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.skalmejen-setup-round-question-option-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.skalmejen-setup-round-question-option {
+    width: 200px;
+    border-radius: 4px;
+}
+
+.skalmejen-setup-round-question-option-checkbox {
+    display: flex;
+    flex-direction: row;
+}
