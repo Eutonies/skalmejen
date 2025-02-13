@@ -1,0 +1,94 @@
+﻿.skalmejen-welcome-container {
+    position: absolute;
+    top: 200px;
+    left: 5%;
+    min-width: 360px;
+    width: 90%;
+    min-height: 600px;
+    background-color: rgba(240,240,240, 0.8);
+    border-radius: 50px;
+    box-shadow: rgba(30,30,30,0.7) 3px 3px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.skalmejen-welcome-header {
+    font-family: 'Norse';
+    font-size: 30pt;
+    font-weight: 800;
+    letter-spacing: 5px;
+    color: rgba(40,40,40,0.9);
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.skalmejen-welcome-components {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.skalmejen-welcome-component {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+
+.skalmejen-welcome-input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.skalmejen-welcome-input-label {
+    font-family: Norse;
+    font-size: 14pt;
+    font-weight: 700;
+}
+
+.skalmejen-welcome-input {
+    width: 250px;
+    height: 30px;
+    border-radius: 4px;
+    font-family: Norse;
+    border-width: 0.5px;
+    padding-left: 5px;
+}
+
+#skalmejen-welcome-join-code {
+    letter-spacing: 10px;
+    font-size: 20pt;
+}
+
+#skalmejen-welcome-user-name {
+    letter-spacing: 2px;
+    font-size: 16pt;
+}
+
+
+.skalmejen-welcome-button {
+    width: 250px;
+    height: 250px;
+    border-radius: 6px;
+    margin-top: 20px;
+    background-color: none;
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: rgba(30,30,30,0.7) 1px 1px;
+    border-width: 0.5px;
+}
+
+#skalmejen-welcome-join {
+    background-image: url('images/welcome/join-game-button.webp');
+}
+
+#skalmejen-welcome-setup {
+    background-image: url('images/welcome/setup-game-button.webp');
+}
+
+#setup-filler {
+    height: 147px;
+}

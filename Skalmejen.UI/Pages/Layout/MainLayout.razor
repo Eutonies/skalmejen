@@ -1,11 +1,13 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-	<div class="skalmejen-background">
-		<TopBarComponent></TopBarComponent>
-		@Body
-	</div>
+<div class="page skalmejen-page">
+    <div class="skalmejen-page-bg">
+        <main class="skalmejen-page-content-container">
+            @Body
+        </main>
+    </div>
 </div>
+
 <script>
     window.transferScreenWidth = () => window.innerWidth;
     window.transferScreenHeight = () => window.innerHeight;
