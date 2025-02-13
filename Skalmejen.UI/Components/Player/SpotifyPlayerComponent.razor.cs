@@ -14,6 +14,7 @@ public partial class SpotifyPlayerComponent
     [Inject]
     public IOptions<SpotifyConfiguration> Conf { get; set; }
 
+
     private bool _didInit = false;
 
     protected override async Task OnInitializedAsync()

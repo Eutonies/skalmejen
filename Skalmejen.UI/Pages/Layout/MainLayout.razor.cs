@@ -3,9 +3,9 @@ using Microsoft.JSInterop;
 using Skalmejen.Common;
 using Skalmejen.UI.Components.Graphics;
 
-namespace Skalmejen.UI.Pages;
+namespace Skalmejen.UI.Pages.Layout;
 
-public partial class Routes
+public partial class MainLayout
 {
     [Inject]
     public IJSRuntime JS { get; set; }

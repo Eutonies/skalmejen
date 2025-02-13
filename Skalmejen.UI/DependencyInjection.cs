@@ -1,5 +1,7 @@
 using Skalmejen.UI.Configuration;
 using Skalmejen.UI.Components.Graphics;
+using Skalmejen.UI.Pages;
+using Skalmejen.Common;
 
 namespace Skalmejen.UI;
 
@@ -9,8 +11,8 @@ public static class DependencyInjection
     {
         builder.Configuration.AddJsonFile("appsettings.json", optional: false);
         builder.Configuration.AddJsonFile("appsettings.local.json", optional: true);
-        builder.Services.Configure<SpotifyConfiguration>(SpotifyConfiguration.ConfigurationName, builder.Configuration);
-        builder.Services.Configure<UIConfiguration>(UIConfiguration.ConfigurationName, builder.Configuration);
+        builder.Services.Configure<SpotifyConfiguration>(builder.Configuration.GetSection(SpotifyConfiguration.ConfigurationName));
+        builder.Services.Configure<UIConfiguration>(builder.Configuration.GetSection(UIConfiguration.ConfigurationName));
         return builder;
     }
 
