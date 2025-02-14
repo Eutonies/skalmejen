@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Skalmejen.Common\Skalmejen.Common.csproj" />
+    <ProjectReference Include="..\Skalmejen.Integration\Skalmejen.Integration.csproj" />
     <ProjectReference Include="..\Skalmejen.Persistence\Skalmejen.Persistence.csproj" />
   </ItemGroup>
 

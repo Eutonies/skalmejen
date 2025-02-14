@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skalmejen.Mobile", "Skalmej
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skalmejen.Persistence", "Skalmejen.Persistence\Skalmejen.Persistence.csproj", "{BF8302C9-7C8D-4EAB-A090-B3C1AE3A0476}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skalmejen.Integration", "Skalmejen.Integration\Skalmejen.Integration.csproj", "{D2AA7DEF-B587-4D43-B6D2-46CB252AD8DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{BF8302C9-7C8D-4EAB-A090-B3C1AE3A0476}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF8302C9-7C8D-4EAB-A090-B3C1AE3A0476}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF8302C9-7C8D-4EAB-A090-B3C1AE3A0476}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2AA7DEF-B587-4D43-B6D2-46CB252AD8DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2AA7DEF-B587-4D43-B6D2-46CB252AD8DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2AA7DEF-B587-4D43-B6D2-46CB252AD8DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2AA7DEF-B587-4D43-B6D2-46CB252AD8DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,7 +11,7 @@ public static class DependencyInjection
     {
         builder.Configuration.AddJsonFile("appsettings.json", optional: false);
         builder.Configuration.AddJsonFile("appsettings.local.json", optional: true);
-        builder.Services.Configure<SpotifyConfiguration>(builder.Configuration.GetSection(SpotifyConfiguration.ConfigurationName));
+        builder.Services.Configure<SkalmejenIntegrationConfiguration>(builder.Configuration.GetSection(SkalmejenIntegrationConfiguration.ConfigurationName));
         builder.Services.Configure<UIConfiguration>(builder.Configuration.GetSection(UIConfiguration.ConfigurationName));
         return builder;
     }
