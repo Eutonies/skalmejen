@@ -1,6 +1,33 @@
 ﻿<div class="skalmejen-spotify-container">
-    <div class="skalmejen-spotify-title"></div>
-    <div class="skalmejen-spotify-button-component">
-        <
+    <div class="skalmejen-spotify-body">
+        <div class="skalmejen-spotify-body-left">
+            <div class="skalmejen-spotify-title">Spotify Track</div>
+            <div class="skalmejen-spotify-input-container">
+                <label class="skalmejen-spotify-input-label" for="skalmejen-spotify-input-track-id">Track ID</label>
+                <input type="text" class="skalmejen-spotify-input" id="skalmejen-spotify-input-track-id" />
+            </div>
+
+            <div class="skalmejen-spotify-button-component">
+                <button type="button" class="skalmejen-spotify-playback-button" id="skalmejen-spotify-backwards"></button>
+                <button type="button" class="skalmejen-spotify-playback-button @(IsPlaying ? "play" : "pause")-mode" id="skalmejen-spotify-play-pause"></button>
+                <button type="button" class="skalmejen-spotify-playback-button" id="skalmejen-spotify-forwards"></button>
+            </div>
+        </div>
+        <div class="skalmejen-spotify-body-right">
+            <div class="skalmejen-spotify-track-info-container">
+                @if(_currentTrack != null) {
+                    <div class="skalmejen-spotify-track-info-part-container">
+                        <div class="skalmejen-spotify-track-info-label">Artist:</div>
+                        <div class="skalmejen-spotify-track-info-part">@(_currentTrack.Artist)</div>
+                    </div>
+                    <img src="@(_currentTrack.Images.First().Url)" id="skalmejen-spotify-track-info-image" width="100" height="100" />
+                    <div class="skalmejen-spotify-track-info-part-container">
+                        <div class="skalmejen-spotify-track-info-part">@(_currentTrack.Name)</div>
+                    </div>
+
+                }
+            </div>
+        </div>
     </div>
+
 </div>

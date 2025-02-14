@@ -15,7 +15,7 @@
     background-image: url('images/layout/background.webp');
     background-size: cover;
     background-repeat: no-repeat;
-    animation-name: fadein;
+    animation-names: fadein;
     animation-delay: 0s;
     animation-fill-mode: both;
     animation-duration: 3s;
@@ -25,9 +25,9 @@
     position: absolute;
     left: 0px;
     width: 100%;
-    animation-name: contentfadein;
+    animation-names: contentfadein;
     animation-delay: 0s;
-    animation-duration: 3s;
+    animation-duration: 0.5s;
     animation-fill-mode: both;
     animation-iteration-count: 1;
 }
