@@ -14,8 +14,10 @@
         </div>
         <div class="skalmejen-welcome-component">
             <div class="skalmejen-welcome-header">Setup Game</div>
+            <label id="skalmejen-welcome-authenticate-label" for="skalmejen-welcome-authenticate">Authenticate to create game</label>
+            <button type="button" id="skalmejen-welcome-authenticate" disabled="@(IsAuthenticated ? "disabled" : null )"></button>
             <div id="setup-filler"></div>
-            <button class="skalmejen-welcome-button" type="button" id="skalmejen-welcome-setup" />
+            <button class="skalmejen-welcome-button" type="button" id="skalmejen-welcome-setup" disabled="@(IsAuthenticated ? null : "disabled")" />
         </div>
     </div>
 </div>

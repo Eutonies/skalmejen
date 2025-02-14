@@ -6,6 +6,7 @@ enum('Spotify');
 
 create table contest (
     contest_id uuid primary key generated always as identity,
+    creator_malarkey_id uuid not null,
     contest_name varchar(200) not null,
     contest_description varchar(200),
     contest_code varchar(20) not null,

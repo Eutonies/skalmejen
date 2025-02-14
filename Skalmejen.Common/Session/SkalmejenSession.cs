@@ -5,6 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Skalmejen.Common.Session;
-public record SkalmejenExecutionSession
-{
-}
+public record SkalmejenSession(
+    AuthenticatedUser? AuthenticatedUser
+    );

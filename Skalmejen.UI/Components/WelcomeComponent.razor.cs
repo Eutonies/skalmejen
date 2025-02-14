@@ -1,8 +1,15 @@
-﻿namespace Skalmejen.UI.Components;
+﻿using Microsoft.AspNetCore.Components;
+using Skalmejen.Common.Session;
+using Skalmejen.UI.Components.Graphics;
+
+namespace Skalmejen.UI.Components;
 
 public partial class WelcomeComponent
 {
+    [CascadingParameter]
+    public SkalmejenSession Session { get; set; }
 
+    private bool IsAuthenticated => Session.AuthenticatedUser != null;
 
     private string _joinText = "";
     public string JoinText { 
@@ -41,5 +48,8 @@ public partial class WelcomeComponent
     }
 
     private bool DisableJoinButton => !(_joinCodeIsOk && _userNameIsOk);
+
+
+
 
 }
