@@ -59,6 +59,14 @@
     border-radius: 3px;
 }
 
+.skalmejen-spotify-playback-range {
+    background-image: url('images/spotify/playback-range.webp');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 60px;
+}
+
 .skalmejen-spotify-button-component {
     width: 200px;
     height: 60px;
