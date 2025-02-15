@@ -7,9 +7,6 @@
                 <input type="text" class="skalmejen-spotify-input" id="skalmejen-spotify-input-track-id" />
             </div>
 
-            <div class="skalmejen-spotify-playback-range">
-
-            </div>
 
             <div class="skalmejen-spotify-button-component">
                 <button type="button" class="skalmejen-spotify-playback-button" id="skalmejen-spotify-backwards"></button>
@@ -21,17 +18,21 @@
             <div class="skalmejen-spotify-track-info-container">
                 @if(_currentTrack != null) {
                     <div class="skalmejen-spotify-track-info-part-container">
-                        <div class="skalmejen-spotify-track-info-label">Artist:</div>
-                        <div class="skalmejen-spotify-track-info-part">@(_currentTrack.Artist)</div>
-                    </div>
-                    <img src="@(_currentTrack.Images.First().Url)" id="skalmejen-spotify-track-info-image" width="100" height="100" />
-                    <div class="skalmejen-spotify-track-info-part-container">
-                        <div class="skalmejen-spotify-track-info-part">@(_currentTrack.Name)</div>
+                        <div class="skalmejen-spotify-track-info-part" id="skalmejen-spotify-track-name">@(_currentTrack.Name)</div>
+                        <div class="skalmejen-spotify-track-info-label">Track</div>
                     </div>
 
+                    <div class="skalmejen-spotify-track-info-part-container">
+                        <div class="skalmejen-spotify-track-info-part" id="skalmejen-spotify-track-artist">@(_currentTrack.Artist)</div>
+                        <div class="skalmejen-spotify-track-info-label">Artist</div>
+                    </div>
+                    <img src="@(_currentTrack.Images.First().Url)" id="skalmejen-spotify-track-info-image" width="100" height="100" />
                 }
             </div>
         </div>
     </div>
-
+    <div class="skalmejen-spotify-playback">
+        <div class="skalmejen-spotify-playback-range">
+        </div>
+    </div>
 </div>

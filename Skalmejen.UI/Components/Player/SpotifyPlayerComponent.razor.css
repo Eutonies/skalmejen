@@ -1,6 +1,6 @@
 ﻿.skalmejen-spotify-container {
     width: 700px;
-    height: 211px;
+    height: 411px;
     background-image: url('images/spotify/background.webp');
     background-size: contain;
     background-repeat: no-repeat;
@@ -23,6 +23,7 @@
 
 .skalmejen-spotify-body {
     width: 100%;
+    height: 211px;
     display: flex;
     flex-direction: row;
 }
@@ -59,13 +60,6 @@
     border-radius: 3px;
 }
 
-.skalmejen-spotify-playback-range {
-    background-image: url('images/spotify/playback-range.webp');
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 200px;
-    height: 60px;
-}
 
 .skalmejen-spotify-button-component {
     width: 200px;
@@ -116,18 +110,26 @@
 .skalmejen-spotify-track-info-part-container {
     margin-left: 10px;
     display: flex;
-    flex-direction: row;
-    align-items: end;
+    flex-direction: column;
 }
 
 .skalmejen-spotify-track-info-label {
     font-weight: 800;
-    font-size: 16pt;
+    font-size: 10pt;
+    margin-top: 0px;
 }
 
 .skalmejen-spotify-track-info-part {
     margin-left: 5px;
     font-weight: 500;
+    margin-bottom: 0px;
+}
+
+#skalmejen-spotify-track-name {
+    font-size: 22pt;
+}
+
+#skalmejen-spotify-track-artist {
     font-size: 18pt;
 }
 
@@ -135,4 +137,18 @@
     margin-left: 40px;
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+
+.skalmejen-spotify-playback {
+
+}
+
+
+.skalmejen-spotify-playback-range {
+    background-image: url('images/spotify/playback-range.webp');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 600px;
+    height: 20px;
 }
