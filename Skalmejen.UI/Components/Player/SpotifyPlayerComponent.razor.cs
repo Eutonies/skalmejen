@@ -42,6 +42,10 @@ public partial class SpotifyPlayerComponent
             ]
         );
 
+    private decimal PlaybackStartPercent => 45.392m;
+    private decimal PlaybackEndPercent => 23.392m;
+
+
     private async Task InitatePlayer(string token)
     {
         var module = await JS.InvokeAsync<IJSObjectReference>("import", "./Components/Player/SpotifyPlayerComponent.razor.js");

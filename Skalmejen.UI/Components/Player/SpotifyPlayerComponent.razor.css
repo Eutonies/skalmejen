@@ -32,7 +32,7 @@
     width: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: start;
 }
 
 .skalmejen-spotify-body-right {
@@ -49,7 +49,7 @@
 }
 
 .skalmejen-spotify-input-label{
-    font-size: 14pt;
+    font-size: 8pt;
     font-weight: 800;
 }
 
@@ -58,24 +58,6 @@
     height: 26px;
     width: 280px;
     border-radius: 3px;
-}
-
-
-.skalmejen-spotify-button-component {
-    width: 200px;
-    height: 60px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: rgba(240,240,240,0.8);
-    border-radius: 5px;
-    border-width: 0.6px;
-    border-color: rgba(40,40,40,0.7);
-    border-style: solid;
-    box-shadow: rgba(40,40,40,0.3) 2px 2px;
-    margin-left: 20px;
-    margin-bottom: 20px;
 }
 
 
@@ -115,18 +97,20 @@
 
 .skalmejen-spotify-track-info-label {
     font-weight: 800;
-    font-size: 10pt;
+    font-size: 6pt;
     margin-top: 0px;
 }
 
 .skalmejen-spotify-track-info-part {
     margin-left: 5px;
-    font-weight: 500;
+    font-weight: 200;
     margin-bottom: 0px;
+    padding-bottom: 0px;
+    height: 28px;
 }
 
 #skalmejen-spotify-track-name {
-    font-size: 22pt;
+    font-size: 18pt;
 }
 
 #skalmejen-spotify-track-artist {
@@ -141,14 +125,89 @@
 
 
 .skalmejen-spotify-playback {
+    background-color: rgba(250,250,250,0.9);
+    height: 411px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
 
 }
 
 
 .skalmejen-spotify-playback-range {
+    position: relative;
     background-image: url('images/spotify/playback-range.webp');
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    width: 600px;
-    height: 20px;
+    width: 650px;
+    height: 15px;
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+
+.skalmejen-spotify-button-component {
+    width: 200px;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgba(240,240,240,0.8);
+    border-radius: 5px;
+    border-width: 0.6px;
+    border-color: rgba(40,40,40,0.7);
+    border-style: solid;
+    box-shadow: rgba(40,40,40,0.3) 2px 2px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#skalmejen-spotify-playback-range-indicators {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+#skalmejen-spotify-playback-start-range {
+    height: 100%;
+    background-color: rgba(109, 65, 65, 0.3);
+}
+
+#skalmejen-spotify-playback-end-range {
+    height: 100%;
+    background-color: rgba(127, 170, 121, 0.4);
+}
+
+#skalmejen-spotify-playback-range-sliders {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+}
+
+/*See: https://medium.com/@predragdavidovic10/native-dual-range-slider-html-css-javascript-91e778134816 *)*/
+.skalmejen-spotify-playback-range-slider {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    appearance: none;
+    background-color: transparent;
+}
+
+#skalmejen-spotify-playback-start-slider::-webkit-slider-thumb {
+    background: url('images/spotify/point-right-rune.webp');
+    outline: none;
+    cursor: pointer;
+}
+
+#skalmejen-spotify-playback-end-slider::-webkit-slider-thumb {
+    background: url('images/spotify/point-left-rune.webp');
+    outline: none;
+    cursor: pointer;
 }

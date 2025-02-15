@@ -1,17 +1,11 @@
-﻿<div class="skalmejen-spotify-container">
+﻿@using Skalmejen.UI.Util
+<div class="skalmejen-spotify-container">
     <div class="skalmejen-spotify-body">
         <div class="skalmejen-spotify-body-left">
             <div class="skalmejen-spotify-title">Spotify Track</div>
             <div class="skalmejen-spotify-input-container">
                 <label class="skalmejen-spotify-input-label" for="skalmejen-spotify-input-track-id">Track ID</label>
                 <input type="text" class="skalmejen-spotify-input" id="skalmejen-spotify-input-track-id" />
-            </div>
-
-
-            <div class="skalmejen-spotify-button-component">
-                <button type="button" class="skalmejen-spotify-playback-button" id="skalmejen-spotify-backwards"></button>
-                <button type="button" class="skalmejen-spotify-playback-button @(IsPlaying ? "play" : "pause")-mode" id="skalmejen-spotify-play-pause"></button>
-                <button type="button" class="skalmejen-spotify-playback-button" id="skalmejen-spotify-forwards"></button>
             </div>
         </div>
         <div class="skalmejen-spotify-body-right">
@@ -32,7 +26,22 @@
         </div>
     </div>
     <div class="skalmejen-spotify-playback">
+        
         <div class="skalmejen-spotify-playback-range">
+            <div id="skalmejen-spotify-playback-range-indicators">
+               <div id="skalmejen-spotify-playback-start-range" style="width: @(PlaybackStartPercent.DecimalValueFormatted(3))%;"></div>
+               <div id="skalmejen-spotify-playback-end-range" style="width: @(PlaybackEndPercent.DecimalValueFormatted(3))%;"></div>
+            </div>
+            <div id="skalmejen-spotify-playback-range-sliders">
+                <input class="skalmejen-spotify-playback-range-slider" id="skalmejen-spotify-playback-start-slider" type="range" min="0" step="0.001" max="100" />
+                <input class="skalmejen-spotify-playback-range-slider" id="skalmejen-spotify-playback-end-slider" type="range" min="0" step="0.001" max="100" />
+            </div>
+
+        </div>
+        <div class="skalmejen-spotify-button-component">
+            <button type="button" class="skalmejen-spotify-playback-button" id="skalmejen-spotify-backwards" onclick="@(() => OnBackwardClicked())"></button>
+            <button type="button" class="skalmejen-spotify-playback-button @(IsPlaying ? "play" : "pause")-mode" id="skalmejen-spotify-play-pause" onclick="@(() => OnPlayPauseClicked())"></button>
+            <button type="button" class="skalmejen-spotify-playback-button" id="skalmejen-spotify-forwards" onclick="@(() => OnForwardClicked())"></button>
         </div>
     </div>
 </div>
