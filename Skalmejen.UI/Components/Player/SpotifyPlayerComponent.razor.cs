@@ -4,6 +4,7 @@ using Microsoft.JSInterop;
 using Skalmejen.Common.Music.Model;
 using Skalmejen.Integration.Configuration;
 using Skalmejen.UI.Util;
+using System.Globalization;
 
 namespace Skalmejen.UI.Components.Player;
 
@@ -21,17 +22,17 @@ public partial class SpotifyPlayerComponent
 
     protected override async Task OnInitializedAsync()
     {
+        if (_currentTrack != null)
+        {
+            _rangeEndValue = 100;
+            _rangeEndTimeSpan = _currentTrack.Duration;
+        }
     }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (!_didInit)
         {
             var token = Conf.Value.DeveloperToken;
-            if (_currentTrack != null)
-            {
-                _rangeEndValue = 100;
-                _rangeEndTimeSpan = _currentTrack.Duration;
-            }
             //await InitatePlayer(token);
             _didInit = true;
         }
@@ -73,70 +74,66 @@ public partial class SpotifyPlayerComponent
 
 
     private decimal _rangeStartValue = 0;
-    public decimal RangeStartValue
+    public string RangeStartValue => _rangeStartValue.DecimalValueFormatted(3);
+    private static readonly CultureInfo EnUs = CultureInfo.GetCultureInfo("en-US");
+    public void OnStartValueChanged(ChangeEventArgs ev)
     {
-        get => _rangeStartValue;
-        set 
+        if(decimal.TryParse(ev.Value?.ToString(), EnUs, out _rangeStartValue))
         {
-            _rangeStartValue = value;       
-            if(_currentTrack != null)
-            {
-                _rangeStartTimeSpan = _currentTrack.Duration * Convert.ToDouble(value / 100m);
-                InvokeAsync(StateHasChanged);
-            }
-        }
-    }
-
-    private decimal _rangeEndValue = 0;
-    public decimal RangeEndValue
-    {
-        get => _rangeEndValue;
-        set
-        {
-            _rangeEndValue = value;
             if (_currentTrack != null)
             {
-                _rangeEndTimeSpan = _currentTrack.Duration * Convert.ToDouble(value / 100m);
-                InvokeAsync(StateHasChanged);
+                _rangeStartTimeSpan = _currentTrack.Duration * Convert.ToDouble(_rangeStartValue / 100m);
             }
-
+            InvokeAsync(StateHasChanged);
         }
     }
 
-    private TimeSpan _rangeStartTimeSpan = TimeSpan.Zero;
-    public string RangeStartTimeSpan { 
-        get => _rangeStartTimeSpan.TimeValueFormatted(); 
-        set
+
+    private decimal _rangeEndValue = 100;
+    public string RangeEndValue => _rangeEndValue.DecimalValueFormatted(3);
+    public void OnEndValueChanged(ChangeEventArgs ev)
+    {
+        if (decimal.TryParse(ev.Value?.ToString(), EnUs, out _rangeEndValue))
         {
-            if(TimeSpan.TryParse(value, out var start))
+            if (_currentTrack != null)
             {
-                _rangeStartTimeSpan = start;
-                if(_currentTrack != null && _currentTrack.Duration > TimeSpan.Zero)
-                {
-                    _rangeStartValue = Convert.ToDecimal(_rangeStartTimeSpan.TotalMilliseconds / _currentTrack.Duration.TotalMilliseconds) * 100;
-                    InvokeAsync(StateHasChanged);
-                }
+                _rangeEndTimeSpan = _currentTrack.Duration * Convert.ToDouble(_rangeEndValue / 100m);
+            }
+            InvokeAsync(StateHasChanged);
+        }
+    }
+
+
+    private TimeSpan _rangeStartTimeSpan = TimeSpan.Zero;
+    public string RangeStartTimeSpan => _rangeStartTimeSpan.TimeValueFormatted(); 
+
+    private void OnStartTimeSpanChanged(ChangeEventArgs ev)
+    {
+        if (TimeSpan.TryParse(ev.Value?.ToString(), out var start))
+        {
+            _rangeStartTimeSpan = start;
+            if (_currentTrack != null && _currentTrack.Duration > TimeSpan.Zero)
+            {
+                _rangeStartValue = Convert.ToDecimal(_rangeStartTimeSpan.TotalMilliseconds / _currentTrack.Duration.TotalMilliseconds) * 100;
+                InvokeAsync(StateHasChanged);
             }
         }
     }
 
     private TimeSpan _rangeEndTimeSpan = TimeSpan.Zero;
-    public string RangeEndTimeSpan
+    public string RangeEndTimeSpan => _rangeEndTimeSpan.TimeValueFormatted();
+
+    private void OnEndTimeSpanChanged(ChangeEventArgs ev)
     {
-        get => _rangeEndTimeSpan.TimeValueFormatted();
-        set
+        if (TimeSpan.TryParse(ev.Value?.ToString(), out var end))
         {
-            if (TimeSpan.TryParse(value, out var start))
+            _rangeEndTimeSpan = end;
+            if (_currentTrack != null && _currentTrack.Duration > TimeSpan.Zero)
             {
-                _rangeEndTimeSpan = start;
-                if (_currentTrack != null && _currentTrack.Duration > TimeSpan.Zero)
-                {
-                    _rangeEndValue = Convert.ToDecimal(_rangeEndTimeSpan.TotalMilliseconds / _currentTrack.Duration.TotalMilliseconds) * 100;
-                    InvokeAsync(StateHasChanged);
-                }
+                _rangeEndValue = Convert.ToDecimal(_rangeEndTimeSpan.TotalMilliseconds / _currentTrack.Duration.TotalMilliseconds) * 100;
+                InvokeAsync(StateHasChanged);
             }
         }
     }
-
 
 }

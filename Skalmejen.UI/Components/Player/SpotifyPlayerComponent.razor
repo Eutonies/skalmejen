@@ -1,4 +1,5 @@
-﻿@using Skalmejen.UI.Util
+﻿@using Microsoft.AspNetCore.Components.Forms
+@using Skalmejen.UI.Util
 <div class="skalmejen-spotify-container">
     <div class="skalmejen-spotify-body">
         <div class="skalmejen-spotify-body-left">
@@ -31,44 +32,62 @@
 
             <div class="skalmejen-spotify-playback-range">
                 <div id="skalmejen-spotify-playback-range-indicators">
-                    <div id="skalmejen-spotify-playback-start-range" style="width: @(RangeStartValue.DecimalValueFormatted(3))%;"></div>
-                    <div id="skalmejen-spotify-playback-end-range" style="width: @((100 - RangeEndValue).DecimalValueFormatted(3))%;"></div>
+                    <div id="skalmejen-spotify-playback-start-range" style="width: @(RangeStartValue)%;"></div>
+                    <div id="skalmejen-spotify-playback-end-range" style="width: @((100 - _rangeEndValue).DecimalValueFormatted(3))%;"></div>
                 </div>
                 <div id="skalmejen-spotify-playback-range-sliders">
-                    <input class="skalmejen-spotify-playback-range-slider" id="skalmejen-spotify-playback-start-slider" type="range" min="0" step="0.001" max="100" @bind="RangeStartValue" />
-                    <input class="skalmejen-spotify-playback-range-slider" id="skalmejen-spotify-playback-end-slider" type="range" min="0" step="0.001" max="100" @bind="RangeEndValue" />
-                </div>
-            </div>
-            <div id="skalmejen-spotify-playback-range-timespans">
-                <div class="skalmejen-spotify-playback-range-timespan-container">
-                    <label for="skalmejen-spotify-playback-start-timespan" class="skalmejen-spotify-playback-range-timespan-label">Start</label>
-                    <input class="skalmejen-spotify-playback-range-timespan"
-                           id="skalmejen-spotify-playback-start-timespan"
-                           type="time"
-                           min="00:00:00"
-                           max="@(_currentTrack.Duration.TimeValueFormatted())"
+                    <input 
+                        class="skalmejen-spotify-playback-range-slider" 
+                        id="skalmejen-spotify-playback-start-slider" 
+                        type="range" 
+                        min="0" 
+                        step="0.001" 
+                        max="100" 
+                        value="@RangeStartValue"
+                        onchange="@OnStartValueChanged"/>
+                    <input class="skalmejen-spotify-playback-range-slider"
+                           id="skalmejen-spotify-playback-end-slider"
+                           type="range"
+                           min="0"
                            step="0.001"
-                           @bind="RangeStartTimeSpan"
-                           />
+                           max="100"
+                           value="@RangeEndValue"
+                           onchange="@OnEndValueChanged" />
+
                 </div>
-                <div class="skalmejen-spotify-button-component">
-                    <button type="button" class="skalmejen-spotify-playback-button" id="skalmejen-spotify-backwards" onclick="@(() => OnBackwardClicked())"></button>
-                    <button type="button" class="skalmejen-spotify-playback-button @(IsPlaying ? "play" : "pause")-mode" id="skalmejen-spotify-play-pause" onclick="@(() => OnPlayPauseClicked())"></button>
-                    <button type="button" class="skalmejen-spotify-playback-button" id="skalmejen-spotify-forwards" onclick="@(() => OnForwardClicked())"></button>
-                </div>
+                <div id="skalmejen-spotify-playback-range-timespans">
+                    <div class="skalmejen-spotify-playback-range-timespan-container">
+                        <label for="skalmejen-spotify-playback-start-timespan" class="skalmejen-spotify-playback-range-timespan-label">Start</label>
+                        <input class="skalmejen-spotify-playback-range-timespan"
+                               id="skalmejen-spotify-playback-start-timespan"
+                               type="time"
+                               min="00:00:00"
+                               max="@(_currentTrack.Duration.TimeValueFormatted())"
+                               step="0.001"
+                               value="@RangeStartTimeSpan"
+                               onchange="@OnStartTimeSpanChanged"
+                               />
+                    </div>
+                    <div class="skalmejen-spotify-button-component">
+                        <button type="button" class="skalmejen-spotify-playback-button" id="skalmejen-spotify-backwards" onclick="@(() => OnBackwardClicked())"></button>
+                        <button type="button" class="skalmejen-spotify-playback-button @(IsPlaying ? "play" : "pause")-mode" id="skalmejen-spotify-play-pause" onclick="@(() => OnPlayPauseClicked())"></button>
+                        <button type="button" class="skalmejen-spotify-playback-button" id="skalmejen-spotify-forwards" onclick="@(() => OnForwardClicked())"></button>
+                    </div>
 
 
-                <div class="skalmejen-spotify-playback-range-timespan-container">
-                    <label for="skalmejen-spotify-playback-end-timespan" class="skalmejen-spotify-playback-range-timespan-label">End</label>
-                    <input class="skalmejen-spotify-playback-range-timespan"
-                           id="skalmejen-spotify-playback-end-timespan"
-                           type="time"
-                           min="00:00:00"
-                           max="@(_currentTrack.Duration.TimeValueFormatted())"
-                           step="0.001"
-                           @bind="RangeEndTimeSpan"
-                           />
+                    <div class="skalmejen-spotify-playback-range-timespan-container">
+                        <label for="skalmejen-spotify-playback-end-timespan" class="skalmejen-spotify-playback-range-timespan-label">End</label>
+                        <input class="skalmejen-spotify-playback-range-timespan"
+                               id="skalmejen-spotify-playback-end-timespan"
+                               type="time"
+                               min="00:00:00"
+                               max="@(_currentTrack.Duration.TimeValueFormatted())"
+                               step="0.001"
+                               value="@RangeEndTimeSpan"
+                               onchange="@OnEndTimeSpanChanged" />
+                    </div>
                 </div>
+
             </div>
 
         }

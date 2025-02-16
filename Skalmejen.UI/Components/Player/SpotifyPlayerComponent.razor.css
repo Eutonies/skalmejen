@@ -123,6 +123,10 @@
     height: 20px;
     margin-top: 30px;
     margin-left: 20px;
+    padding-left: 3px;
+    padding-right: 6px;
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 
 
@@ -143,7 +147,7 @@
 
 #skalmejen-spotify-playback-end-range {
     height: 100%;
-    background-color: rgba(127, 170, 121, 0.4);
+    background-color: rgba(109, 65, 65, 0.3);
 }
 
 #skalmejen-spotify-playback-range-sliders {
@@ -168,17 +172,19 @@
     z-index: 1;
     top: 0px;
     height: 0px;
+    padding:0px;
 }
 #skalmejen-spotify-playback-end-slider {
     top: 20px;
     height: 0px;
+    padding: 0px;
 }
 
 #skalmejen-spotify-playback-start-slider::-webkit-slider-thumb {
     background-image: url('images/spotify/point-right-rune.webp');
     background-size: contain;
     background-repeat: no-repeat;
-    width: 20px;
+    width: 10px;
     height: 20px;
     outline: none;
     cursor: pointer;
@@ -190,7 +196,7 @@
     background-image: url('images/spotify/point-left-rune.webp');
     background-size: contain;
     background-repeat: no-repeat;
-    width: 20px;
+    width: 10px;
     height: 20px;
     outline: none;
     cursor: pointer;
