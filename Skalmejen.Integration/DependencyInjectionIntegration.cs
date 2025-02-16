@@ -15,4 +15,10 @@ public static class DependencyInjectionIntegration
         builder.Services.Configure<SkalmejenIntegrationConfiguration>(builder.Configuration.GetSection(SkalmejenIntegrationConfiguration.ConfigurationName));
         return builder;
     }
+
+
+    private static void ConfigureHttpClients(this WebApplicationBuilder builder)
+    {
+
+    }
 }
