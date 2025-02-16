@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Skalmejen.Common.Music;
-public interface ISpotifyPlayer
+public interface ISpotifyPlayer : ISpotifyLoader
 {
     Task TransferPlayback(string deviceId);
-    Task Play(TimeSpan? offset = null, string? deviceId = null);
+    Task Play(TimeSpan? offset = null, string? trackId = null, string? deviceId = null);
     Task Pause(string? deviceId = null);
     Task SeekTo(TimeSpan offset, string? deviceId = null);
 

@@ -2,6 +2,7 @@ using Skalmejen.UI.Configuration;
 using Skalmejen.UI.Components.Graphics;
 using Skalmejen.UI.Pages;
 using Skalmejen.Common;
+using Skalmejen.Integration;
 
 namespace Skalmejen.UI;
 
@@ -23,6 +24,7 @@ public static class DependencyInjection
            .AddInteractiveServerComponents();
         builder.Services
             .AddHttpContextAccessor();
+        builder.AddIntegration();
         return builder;
     }
 

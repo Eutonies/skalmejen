@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using Skalmejen.Common.Music;
 using Skalmejen.Common.Music.Model;
+using Skalmejen.Common.Util;
 using Skalmejen.UI.Configuration;
 using SpyOff.Infrastructure.Tracks;
 using System;
@@ -10,22 +11,30 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Skalmejen.Integration.Music;
-public class SpotifyPlayer : ISpotifyLoader, ISpotifyPlayer
+public class SpotifyPlayer : ISpotifyPlayer
 {
     private readonly ISpotifyApiClient _client;
 
-    public SpotifyPlayer(ISpotifyApiClient client, IOptions<SkalmejenIntegrationConfiguration> conf)
+    public SpotifyPlayer(ISpotifyApiClient client)
     {
-        _token = conf.Value.Spotify.DeveloperToken;
         _client = client;
     }
 
-    private string _token;
 
 
-    public Task<SpotifyTrack> LoadTrack(string trackId)
+    public async Task<SpotifyTrack> LoadTrack(string trackId)
     {
-        throw new NotImplementedException();
+        var loaded = await _client.GetTrackAsync(trackId);
+        var returnee = new SpotifyTrack(
+            TrackId: loaded.Id,
+            Name: loaded.Name,
+            Artist: loaded.Artists.Select(_ => _.Name).MakeString(", "),
+            Duration: TimeSpan.FromMilliseconds(loaded.Duration_ms),
+            Images: loaded.Album.Images
+               .Select(_ => new SpotifyImage(Url: _.Url, _.Width ?? 200, _.Height ?? 200))
+               .ToList()
+               );
+        return returnee;
     }
 
     public async Task Pause(string? deviceId = null)
@@ -33,15 +42,19 @@ public class SpotifyPlayer : ISpotifyLoader, ISpotifyPlayer
         await _client.PauseAUsersPlaybackAsync(deviceId);
     }
 
-    public async Task Play(TimeSpan? offset = null, string? deviceId = null)
+    public async Task Play(TimeSpan? offset = null, string? trackId = null, string? deviceId = null)
     {
         Body18? body = null;
+        if(trackId != null && offset == null)
+            offset = TimeSpan.Zero;
         if (offset != null) 
         {
             body = new Body18
             {
                 Position_ms = (int) offset.Value.TotalMilliseconds
             };
+            if (trackId != null)
+                body.Context_uri = $"spotify:track:{trackId}";
         }
         await _client.StartAUsersPlaybackAsync(deviceId, body);
     }

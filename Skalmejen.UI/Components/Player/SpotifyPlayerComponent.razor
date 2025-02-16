@@ -6,7 +6,12 @@
             <div class="skalmejen-spotify-title">Spotify Track</div>
             <div class="skalmejen-spotify-input-container">
                 <label class="skalmejen-spotify-input-label" for="skalmejen-spotify-input-track-id">Track ID</label>
-                <input type="text" class="skalmejen-spotify-input" id="skalmejen-spotify-input-track-id" />
+                <input 
+                    type="text" 
+                    class="skalmejen-spotify-input" 
+                    id="skalmejen-spotify-input-track-id" 
+                    value="@CurrentTrackId"
+                    onchange="@OnCurrentTrackIdChanged"/>
             </div>
         </div>
         <div class="skalmejen-spotify-body-right">

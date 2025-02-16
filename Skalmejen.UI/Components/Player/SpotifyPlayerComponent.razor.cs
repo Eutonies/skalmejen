@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
 using Microsoft.JSInterop;
+using Skalmejen.Common.Music;
 using Skalmejen.Common.Music.Model;
 using Skalmejen.Integration.Configuration;
 using Skalmejen.UI.Configuration;
@@ -18,16 +19,17 @@ public partial class SpotifyPlayerComponent
     [Inject]
     public IOptions<SkalmejenIntegrationConfiguration> Conf { get; set; }
 
+    [Inject]
+    public ISpotifyPlayer SpotifyPlayer { get; set; }
+
 
     private bool _didInit = false;
-    private string? _playerDeviceId;
 
 
     protected override async Task OnInitializedAsync()
     {
-        if (_currentTrack != null)
+        if (!_didInit && _currentTrack != null)
         {
-            _rangeEndValue = 100;
             _rangeEndTimeSpan = _currentTrack.Duration;
         }
     }
@@ -43,15 +45,6 @@ public partial class SpotifyPlayerComponent
     private bool _isPlaying = false;
     private bool IsPlaying => _isPlaying;
 
-    private SpotifyTrack? _currentTrack = new SpotifyTrack(
-        TrackId: "0tGPJ0bkWOUmH7MEOR77qc",
-        Name: "Cut To The Feeling",
-        Artist: "Carly Rae Jepsen",
-        Duration: TimeSpan.FromMilliseconds(207959),
-        Images: [
-            new SpotifyImage("https://i.scdn.co/image/ab67616d00001e027359994525d219f64872d3b1", 300, 300)
-            ]
-        );
 
     private Task OnUpdate() => InvokeAsync(StateHasChanged);
 
@@ -82,6 +75,42 @@ public partial class SpotifyPlayerComponent
     {
 
     }
+    private string? _currentTrackId;
+    public string? CurrentTrackId => _currentTrackId;
+
+    private void OnCurrentTrackIdChanged(ChangeEventArgs ev)
+    {
+        var value = ev.Value?.ToString();
+        if (_currentTrackId == value) return;
+        _currentTrackId = value;
+        if (_currentTrackId != null)
+        {
+            Task.Run(async () =>
+            {
+                _currentTrack = await SpotifyPlayer.LoadTrack(_currentTrackId);
+                _rangeStartValue = 0;
+                _rangeEndValue = 100;
+                _rangeStartTimeSpan = TimeSpan.Zero;
+                _rangeEndTimeSpan = _currentTrack.Duration;
+                await InvokeAsync(StateHasChanged);
+            }
+            );
+        }
+        else
+            _ = InvokeAsync(StateHasChanged);
+
+    }
+
+    private SpotifyTrack? _currentTrack = new SpotifyTrack(
+        TrackId: "0tGPJ0bkWOUmH7MEOR77qc",
+        Name: "Cut To The Feeling",
+        Artist: "Carly Rae Jepsen",
+        Duration: TimeSpan.FromMilliseconds(207959),
+        Images: [
+            new SpotifyImage("https://i.scdn.co/image/ab67616d00001e027359994525d219f64872d3b1", 300, 300)
+            ]
+    );
+
 
 
     private decimal _rangeStartValue = 0;
@@ -94,6 +123,7 @@ public partial class SpotifyPlayerComponent
             if (_currentTrack != null)
             {
                 _rangeStartTimeSpan = _currentTrack.Duration * Convert.ToDouble(_rangeStartValue / 100m);
+                SetPlayback();
             }
             InvokeAsync(StateHasChanged);
         }
@@ -112,6 +142,20 @@ public partial class SpotifyPlayerComponent
             }
             InvokeAsync(StateHasChanged);
         }
+    }
+
+    private void SetPlayback()
+    {
+        _ = Task.Run(async () =>
+        {
+            if(_clientState?.DeviceId != null)
+            {
+                await SpotifyPlayer.TransferPlayback(_clientState.DeviceId);
+                await SpotifyPlayer.Play(_rangeStartTimeSpan, _currentTrackId, _clientState.DeviceId);
+                await SpotifyPlayer.Pause();
+                await InvokeAsync(StateHasChanged);
+            }
+        });
     }
 
 
