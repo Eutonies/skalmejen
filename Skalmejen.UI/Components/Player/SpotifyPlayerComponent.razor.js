@@ -1,5 +1,5 @@
 ﻿export class SkalmejenSpotifyClient {
-    static setup(apiToken) {
+    static setup(apiToken, clientState) {
 
         const script = document.createElement("script")
         script.src = "https://sdk.scdn.co/spotify-player.js"
@@ -31,6 +31,7 @@
 
             player.addListener('ready', ({ device_id }) => {
                 console.log('Ready with Device ID', device_id)
+                clientState.invokeMethodAsync('UpdateDeviceId', device_id)
                 player.togglePlay()
                 printState(player)
 

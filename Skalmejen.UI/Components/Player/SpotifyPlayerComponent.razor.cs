@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.JSInterop;
 using Skalmejen.Common.Music.Model;
 using Skalmejen.Integration.Configuration;
+using Skalmejen.UI.Configuration;
 using Skalmejen.UI.Util;
 using System.Globalization;
 
@@ -15,10 +16,12 @@ public partial class SpotifyPlayerComponent
     public IJSRuntime JS { get; set; }
 
     [Inject]
-    public IOptions<SpotifyConfiguration> Conf { get; set; }
+    public IOptions<SkalmejenIntegrationConfiguration> Conf { get; set; }
 
 
     private bool _didInit = false;
+    private string? _playerDeviceId;
+
 
     protected override async Task OnInitializedAsync()
     {
@@ -32,8 +35,8 @@ public partial class SpotifyPlayerComponent
     {
         if (!_didInit)
         {
-            var token = Conf.Value.DeveloperToken;
-            //await InitatePlayer(token);
+            var token = Conf.Value.Spotify.DeveloperToken;
+            await InitatePlayer(token);
             _didInit = true;
         }
     }
@@ -50,10 +53,18 @@ public partial class SpotifyPlayerComponent
             ]
         );
 
+    private Task OnUpdate() => InvokeAsync(StateHasChanged);
+
+    private SpotifyClientState _clientState;
+
     private async Task InitatePlayer(string token)
     {
         var module = await JS.InvokeAsync<IJSObjectReference>("import", "./Components/Player/SpotifyPlayerComponent.razor.js");
-        await module.InvokeVoidAsync("SkalmejenSpotifyClient.setup", token);
+        _clientState = new SpotifyClientState(
+            OnUpdate: OnUpdate
+        );
+        await module.InvokeVoidAsync("SkalmejenSpotifyClient.setup", token, DotNetObjectReference.Create(_clientState));
+
     }
 
     private void OnPlayPauseClicked()
