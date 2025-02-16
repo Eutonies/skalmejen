@@ -61,28 +61,7 @@
 }
 
 
-.skalmejen-spotify-playback-button {
-    width: 30px;
-    height: 30px;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
 
-#skalmejen-spotify-backwards {
-    background-image: url('images/spotify/backward-rune.webp');
-}
-
-#skalmejen-spotify-forwards {
-    background-image: url('images/spotify/forward-rune.webp');
-}
-
-.play-mode {
-    background-image: url('images/spotify/pause-rune.webp');
-}
-
-.pause-mode {
-    background-image: url('images/spotify/play-rune.webp');
-}
 
 .skalmejen-spotify-track-info-container {
     display: flex;
@@ -134,35 +113,19 @@
 }
 
 
+
 .skalmejen-spotify-playback-range {
     position: relative;
     background-image: url('images/spotify/playback-range.webp');
     background-size: 100% 100%;
     background-repeat: no-repeat;
     width: 650px;
-    height: 15px;
+    height: 20px;
     margin-top: 30px;
     margin-left: 20px;
 }
 
 
-.skalmejen-spotify-button-component {
-    width: 200px;
-    height: 60px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: rgba(240,240,240,0.8);
-    border-radius: 5px;
-    border-width: 0.6px;
-    border-color: rgba(40,40,40,0.7);
-    border-style: solid;
-    box-shadow: rgba(40,40,40,0.3) 2px 2px;
-    margin-left: 20px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-}
 
 #skalmejen-spotify-playback-range-indicators {
     width: 100%;
@@ -196,18 +159,112 @@
     top: 0px;
     left: 0px;
     width: 100%;
+    -webkit-appearance: none;
     appearance: none;
     background-color: transparent;
 }
 
+#skalmejen-spotify-playback-start-slider {
+    z-index: 1;
+    top: 0px;
+    height: 0px;
+}
+#skalmejen-spotify-playback-end-slider {
+    top: 20px;
+    height: 0px;
+}
+
 #skalmejen-spotify-playback-start-slider::-webkit-slider-thumb {
-    background: url('images/spotify/point-right-rune.webp');
+    background-image: url('images/spotify/point-right-rune.webp');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
     outline: none;
     cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 #skalmejen-spotify-playback-end-slider::-webkit-slider-thumb {
-    background: url('images/spotify/point-left-rune.webp');
+    background-image: url('images/spotify/point-left-rune.webp');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
     outline: none;
     cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+
+#skalmejen-spotify-playback-range-timespans {
+    position: relative;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 28px;
+}
+
+.skalmejen-spotify-playback-range-timespan-container {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.skalmejen-spotify-playback-range-timespan-label {
+    font-size: 8px;
+}
+
+.skalmejen-spotify-playback-range-timespan {
+    font-size: 8pt;
+    height: 12px;
+    padding: 0px;
+}
+
+.skalmejen-spotify-button-component {
+    position: relative;
+    width: 160px;
+    height: 34px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgba(240,240,240,0.8);
+    border-radius: 5px;
+    border-width: 0.6px;
+    border-color: rgba(40,40,40,0.7);
+    border-style: solid;
+    box-shadow: rgba(40,40,40,0.3) 2px 2px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.skalmejen-spotify-playback-button {
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+
+#skalmejen-spotify-backwards {
+    background-image: url('images/spotify/backward-rune.webp');
+}
+
+#skalmejen-spotify-forwards {
+    background-image: url('images/spotify/forward-rune.webp');
+}
+
+.play-mode {
+    background-image: url('images/spotify/pause-rune.webp');
+}
+
+.pause-mode {
+    background-image: url('images/spotify/play-rune.webp');
 }
